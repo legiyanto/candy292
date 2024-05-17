@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 29, 2024 at 08:16 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.26
+-- Host: localhost:3306
+-- Generation Time: May 17, 2024 at 03:59 PM
+-- Server version: 10.3.39-MariaDB-0ubuntu0.20.04.2
+-- PHP Version: 7.4.3-4ubuntu2.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `candy2`
+-- Database: `candy`
 --
 
 -- --------------------------------------------------------
@@ -44,7 +45,7 @@ CREATE TABLE `berita` (
   `nip_pengawas` varchar(50) DEFAULT NULL,
   `catatan` text DEFAULT NULL,
   `tgl_ujian` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `berita`
@@ -64,7 +65,7 @@ CREATE TABLE `file_pendukung` (
   `id_mapel` int(11) DEFAULT 0,
   `nama_file` varchar(50) DEFAULT NULL,
   `status_file` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `file_pendukung`
@@ -325,7 +326,7 @@ CREATE TABLE `jawaban` (
   `esai` text DEFAULT NULL,
   `nilai_esai` int(5) NOT NULL DEFAULT 0,
   `ragu` int(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -345,7 +346,7 @@ CREATE TABLE `jawaban_temp` (
   `esai` text DEFAULT NULL,
   `nilai_esai` int(5) NOT NULL DEFAULT 0,
   `ragu` int(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -363,7 +364,7 @@ CREATE TABLE `jawaban_tugas` (
   `tgl_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `nilai` varchar(5) DEFAULT NULL,
   `status` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -375,7 +376,7 @@ CREATE TABLE `jenis` (
   `id_jenis` varchar(30) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `status` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `jenis`
@@ -401,7 +402,7 @@ CREATE TABLE `jurusan` (
   `jurusan_sp_id` varchar(50) DEFAULT NULL,
   `kurikulum_id` varchar(20) DEFAULT NULL,
   `sekolah_id` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -415,7 +416,7 @@ CREATE TABLE `kelas` (
   `nama` varchar(30) NOT NULL,
   `rombongan_belajar_id` varchar(50) DEFAULT NULL,
   `semester_id` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `kelas`
@@ -435,7 +436,7 @@ CREATE TABLE `level` (
   `kode_level` varchar(5) NOT NULL,
   `keterangan` varchar(50) NOT NULL,
   `rombongan_belajar_id` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `level`
@@ -456,7 +457,7 @@ CREATE TABLE `log` (
   `type` varchar(20) NOT NULL,
   `text` varchar(20) NOT NULL,
   `date` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -483,7 +484,7 @@ CREATE TABLE `mapel` (
   `status` varchar(2) NOT NULL,
   `kkm` int(3) DEFAULT NULL,
   `soal_agama` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `mapel`
@@ -503,7 +504,7 @@ CREATE TABLE `mata_pelajaran` (
   `kode_mapel` varchar(20) NOT NULL,
   `nama_mapel` varchar(50) NOT NULL,
   `mata_pelajaran_id` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `mata_pelajaran`
@@ -546,7 +547,7 @@ CREATE TABLE `materi` (
   `youtube` varchar(255) DEFAULT NULL,
   `tgl` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `materi`
@@ -587,7 +588,7 @@ CREATE TABLE `nilai` (
   `id_opsi` longtext DEFAULT NULL,
   `id_esai` text DEFAULT NULL,
   `blok` int(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `nilai`
@@ -644,14 +645,14 @@ CREATE TABLE `pengawas` (
   `ptk_id` varchar(50) DEFAULT NULL,
   `password2` text DEFAULT NULL,
   `ruang` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `pengawas`
 --
 
 INSERT INTO `pengawas` (`id_pengawas`, `nip`, `nama`, `jabatan`, `username`, `password`, `level`, `no_ktp`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `no_hp`, `email`, `alamat_jalan`, `rt_rw`, `dusun`, `kelurahan`, `kecamatan`, `kode_pos`, `nuptk`, `bidang_studi`, `jenis_ptk`, `tgs_tambahan`, `status_pegawai`, `status_aktif`, `status_nikah`, `sumber_gaji`, `ahli_lab`, `nama_ibu`, `nama_suami`, `nik_suami`, `pekerjaan`, `tmt`, `keahlian_isyarat`, `kewarganegaraan`, `npwp`, `foto`, `ptk_id`, `password2`, `ruang`) VALUES
-(1, '-', 'administrator', '', 'admin', '$2a$12$k3LvBhfLHVdp8HzK2qldG.m6a..P7vsu6N870/0JMC2TSmv5zjLQy', 'admin', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', NULL, NULL, NULL),
+(1, '-', 'administrator', '', 'admin', '$2y$10$z8xVDKCCx2nAQxskMjYkJOiGpVqRJqvx57n8BLpABuXqIz6fKoEa6', 'admin', '', '', '0000-00-00', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '0000-00-00', '', '', '', '', NULL, NULL, NULL),
 (295, '-', 'sman14bandaaceh', NULL, 'sman14bandaaceh', '$2y$10$K.jiW8myhxQ4zw3UicL2iOTX.8l75sRR8hkkl55SDWAjmXZ5bkC3.', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (297, '197708182003122004', 'Cut Ernawati', 'XII-MIPA', 'GURUCE', '$2y$10$guk4m0jyFRdVLqBdZfVaEejTgEErhAH5v7l9dEHVpm.doJnLW4FQm', 'guru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (298, '197401171999032004', 'Cut Putri Zulaicha', '', 'GURUCP', '$2y$10$UPhX6j7vNQ8dtB7U2dgkgeiGd80k917IUfoPbsdY15ZUZjHv/aSgm', 'guru', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -683,7 +684,7 @@ CREATE TABLE `pengumuman` (
   `user` int(3) NOT NULL,
   `text` longtext NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `pengumuman`
@@ -702,7 +703,7 @@ CREATE TABLE `pk` (
   `id_pk` varchar(10) NOT NULL,
   `program_keahlian` varchar(50) NOT NULL,
   `jurusan_id` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `pk`
@@ -724,7 +725,7 @@ CREATE TABLE `referensi_jurusan` (
   `untuk_sma` int(1) NOT NULL,
   `untuk_smk` int(1) NOT NULL,
   `jenjang_pendidikan_id` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -735,7 +736,7 @@ CREATE TABLE `referensi_jurusan` (
 CREATE TABLE `ruang` (
   `kode_ruang` varchar(10) NOT NULL,
   `keterangan` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `ruang`
@@ -757,7 +758,7 @@ CREATE TABLE `savsoft_options` (
   `q_option` text NOT NULL,
   `q_option_match` varchar(1000) DEFAULT NULL,
   `score` float NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -776,7 +777,7 @@ CREATE TABLE `savsoft_qbank` (
   `no_time_corrected` int(11) NOT NULL DEFAULT 0,
   `no_time_incorrected` int(11) NOT NULL DEFAULT 0,
   `no_time_unattempted` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -792,7 +793,7 @@ CREATE TABLE `semester` (
   `periode_aktif` enum('1','0') NOT NULL,
   `tanggal_mulai` date NOT NULL,
   `tanggal_selesai` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -804,7 +805,7 @@ CREATE TABLE `server` (
   `kode_server` varchar(20) NOT NULL,
   `nama_server` varchar(30) NOT NULL,
   `status` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `server`
@@ -825,7 +826,7 @@ INSERT INTO `server` (`kode_server`, `nama_server`, `status`) VALUES
 CREATE TABLE `sesi` (
   `kode_sesi` varchar(10) NOT NULL,
   `nama_sesi` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `sesi`
@@ -845,7 +846,7 @@ CREATE TABLE `session` (
   `id` int(11) NOT NULL,
   `session_time` varchar(10) NOT NULL,
   `session_hash` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -884,7 +885,7 @@ CREATE TABLE `setting` (
   `db_versi` varchar(10) DEFAULT NULL,
   `bc` varchar(50) NOT NULL,
   `maintenance` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `setting`
@@ -905,7 +906,7 @@ CREATE TABLE `sinkron` (
   `jumlah` varchar(50) DEFAULT NULL,
   `tanggal` varchar(50) DEFAULT NULL,
   `status_sinkron` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `sinkron`
@@ -979,7 +980,7 @@ CREATE TABLE `siswa` (
   `rombongan_belajar_id` varchar(50) DEFAULT NULL,
   `status` varchar(10) DEFAULT 'aktif',
   `online` int(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `siswa`
@@ -1039,13 +1040,13 @@ CREATE TABLE `soal` (
   `id_soal` int(11) NOT NULL,
   `id_mapel` int(11) NOT NULL,
   `nomor` int(5) DEFAULT NULL,
-  `soal` longtext CHARACTER SET utf8mb4 DEFAULT NULL,
+  `soal` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `jenis` int(1) DEFAULT NULL,
-  `pilA` longtext CHARACTER SET utf8mb4 DEFAULT NULL,
-  `pilB` longtext CHARACTER SET utf8mb4 DEFAULT NULL,
-  `pilC` longtext CHARACTER SET utf8mb4 DEFAULT NULL,
-  `pilD` longtext CHARACTER SET utf8mb4 DEFAULT NULL,
-  `pilE` longtext CHARACTER SET utf8mb4 DEFAULT NULL,
+  `pilA` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pilB` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pilC` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pilD` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `pilE` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `jawaban` varchar(1) DEFAULT NULL,
   `file` mediumtext DEFAULT NULL,
   `file1` mediumtext DEFAULT NULL,
@@ -1054,7 +1055,7 @@ CREATE TABLE `soal` (
   `fileC` mediumtext DEFAULT NULL,
   `fileD` mediumtext DEFAULT NULL,
   `fileE` mediumtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `soal`
@@ -1138,7 +1139,7 @@ CREATE TABLE `token` (
   `token` varchar(6) NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `masa_berlaku` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `token`
@@ -1165,7 +1166,7 @@ CREATE TABLE `tugas` (
   `tgl_selesai` datetime NOT NULL,
   `tgl` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1207,7 +1208,7 @@ CREATE TABLE `ujian` (
   `ulang_kkm` int(1) NOT NULL,
   `btn_selesai` int(11) NOT NULL,
   `pelanggaran` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `ujian`
