@@ -70,8 +70,13 @@ if [ $? -eq 0 ]; then
 else
   echo "File candy.zip tidak ditemukan di $DEST_DIR."
 fi
-sudo chmod -R 777 /var/www/html
+sudo chmod +x php.sh
+sudo ./php.sh
+systemctl restart php7.4-fpm
+sudo systemctl restart nginx
 sudo chmod +x candy.sh
 sudo ./candy.sh
+sudo chmod -R 777 /var/www/html
+
 
 
