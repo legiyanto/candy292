@@ -55,20 +55,46 @@ systemctl restart php7.4-fpm
 PHPINI="/etc/php/7.4/cli/php.ini"
 sed -i 's/^\s*session.auto_start\s*=.*/session.auto_start = 1/' "$PHPINI"
 systemctl restart php7.4-fpm
-SOURCE_DIR="/home/otomasi"
-DEST_DIR="/var/www/html"
-sudo cp -r "$SOURCE_DIR"/* "$DEST_DIR"
-ZIP_FILE="$DEST_DIR/candy.zip"
-if [ -f "$ZIP_FILE" ]; then
-  # Unzip file candy.zip ke DEST_DIR
-  unzip -o "$ZIP_FILE" -d "$DEST_DIR"
+# Nama direktori yang ingin dicari
+DIRNAME="otomasi"
+
+# Direktori tujuan untuk menyalin
+COPY_DESTINATION="/home"
+
+# File zip yang akan di-unzip
+ZIP_FILE="/var/www/html/candy.zip"
+
+# Direktori tujuan untuk unzip
+UNZIP_DESTINATION="/var/www/html"
+
+# Cari direktori dan salin ke direktori tujuan
+echo "Mencari direktori '$DIRNAME' dan menyalin secara rekursif ke '$COPY_DESTINATION'..."
+find / -type d -name "$DIRNAME" -exec cp -r {} "$COPY_DESTINATION" \;
+
+# Periksa apakah operasi penyalinan berhasil
 if [ $? -eq 0 ]; then
-    echo "Unzip berhasil!"
-  else
-    echo "Gagal melakukan unzip."
-  fi
+    echo "Direktori '$DIRNAME' berhasil ditemukan dan disalin ke '$COPY_DESTINATION'."
 else
-  echo "File candy.zip tidak ditemukan di $DEST_DIR."
+    echo "Gagal menemukan atau menyalin direktori '$DIRNAME'."
+    exit 1
+fi
+
+# Periksa apakah file zip ada
+if [ -f "$ZIP_FILE" ]; then
+    echo "Menemukan file '$ZIP_FILE'. Unzipping ke '$UNZIP_DESTINATION'..."
+    # Unzip file ke direktori tujuan
+    unzip "$ZIP_FILE" -d "$UNZIP_DESTINATION"
+
+    # Periksa apakah operasi unzip berhasil
+    if [ $? -eq 0 ]; then
+        echo "File '$ZIP_FILE' berhasil di-unzip ke '$UNZIP_DESTINATION'."
+    else
+        echo "Gagal meng-unzip file '$ZIP_FILE'."
+        exit 1
+    fi
+else
+    echo "File '$ZIP_FILE' tidak ditemukan."
+    exit 1
 fi
 sudo chmod +x php.sh
 sudo ./php.sh
